@@ -1,0 +1,35 @@
+<h1> Libros </h1>
+<%= search_form_for @q do |f| %>
+    <%= f.label :status_eq, "Estado"%>
+    <%= f.select :status_eq, options_for_select(Book.statuses, @q.status_eq) %>
+    <%= f.submit%>
+<%end%>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Autor</th>
+      <th scope="col">Titulo</th>
+      <th scope="col">Status</th>
+      <th scope="col">Fecha prestamos</th>
+      <th scope="col">Fecha devolucion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book|%>
+        <tr>
+            <td><%= book.title %></td>
+            <td><%= book.author %></td>
+            <td><%= book.status %></td>
+            <td><%= book.borrowed_at %></td>
+            <td><%= book.returned_at %></td>
+        </tr>
+    <%end%>
+  </tbody>
+</table>
+
+<div class ="row">
+    <%= paginate @books%>
+</div>
+
+<%= link_to "Nuevo libro", books_new_path %>

@@ -1,0 +1,16 @@
+<h1>Nuevo Libro</h1>
+<%= form_with(model: @book, local: true) do |f| %>
+    
+    <%= f.text_field :title, placeholder: 'titulo aca' %> <br>
+    <%= f.text_field :author, placeholder: 'autor' %> <br>
+    <%= f.select :status, Book.statuses.keys %> <br>
+    
+    <%= f.label :borrowed_at, "Dia prestamo"%>
+    <%= f.date_field :borrowed_at %><br>
+
+    <%= f.label :returned_at, "Dia devolucion"%>
+    <%= f.date_field :returned_at %><br>
+
+    <%= f.submit%>
+    
+<%end%>
